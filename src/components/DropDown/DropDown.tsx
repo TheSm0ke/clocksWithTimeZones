@@ -10,11 +10,17 @@ interface DropDownProps {
   options: Option[];
   changeOption: (option: Option) => void;
   height?: number;
+  defaultValue?: Option;
 }
 
-const DropDown = ({ options, changeOption, height = 150 }: DropDownProps) => {
+const DropDown = ({
+  options,
+  changeOption,
+  height = 150,
+  defaultValue = options[0],
+}: DropDownProps) => {
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(options[0]);
+  const [selectedValue, setSelectedValue] = useState(defaultValue);
 
   const handlerShowOrCloseOptions = () => {
     setOptionsIsOpen((prev) => !prev);

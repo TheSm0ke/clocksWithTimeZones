@@ -42,12 +42,18 @@ const AnalogClockWithDigitalClock = () => {
   const date = new Date();
   const timeWithoutTimeZone = date.getTimezoneOffset() * 60000;
   const hourInMilliSeconds = 3600000;
-  console.log(new Date(date.getTime() + timeWithoutTimeZone));
 
-  const [currentOption, setCurrentOption] = useState<Option>(options[0]);
-  const [value, setValue] = useState(
-    new Date(date.getTime() + timeWithoutTimeZone)
+  const [currentOption, setCurrentOption] = useState<Option>(
+    options.find(
+      (option) =>
+        Number.parseInt(option.value) === -date.getTimezoneOffset() / 60
+    ) ?? options[0]
   );
+  const [value, setValue] = useState(new Date());
+  console.log(currentOption);
+
+  const handleChangeCurrentOption = (option: Option) =>
+    setCurrentOption(option);
 
   useEffect(() => {
     const interval = setInterval(
@@ -81,14 +87,14 @@ const AnalogClockWithDigitalClock = () => {
         value={value}
       />
       <p>
-        Current time:
         {numberWithZero(value.getHours())}:{numberWithZero(value.getMinutes())}:
         {numberWithZero(value.getSeconds())}
       </p>
       <DropDown
         height={100}
         options={options}
-        changeOption={(option) => setCurrentOption(option)}
+        defaultValue={currentOption}
+        changeOption={handleChangeCurrentOption}
       />
     </div>
   );
