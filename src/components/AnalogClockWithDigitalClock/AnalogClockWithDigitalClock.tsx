@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Clock from "react-clock";
-import "./AnalogClock.css";
 import DropDown, { Option } from "../DropDown/DropDown";
+import "./AnalogClockWithDigitalClock.css";
 
-const AnalogClock = () => {
+const AnalogClockWithDigitalClock = () => {
   const options = [
     {
       value: "2",
@@ -94,4 +94,4 @@ const AnalogClock = () => {
   );
 };
 
-export default AnalogClock;
+export default AnalogClockWithDigitalClock;

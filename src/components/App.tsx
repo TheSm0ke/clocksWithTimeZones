@@ -1,10 +1,22 @@
 import "./App.css";
-import AnalogClock from "./AnalogClock/AnalogClock";
+import AnalogClockWithDigitalClock from "./AnalogClockWithDigitalClock/AnalogClockWithDigitalClock";
 
 const App = () => {
   return (
     <div className="App">
-      <AnalogClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
+      <AnalogClockWithDigitalClock />
     </div>
   );
 };

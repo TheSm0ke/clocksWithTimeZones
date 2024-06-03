@@ -40,7 +40,7 @@ const DropDown = ({ options, changeOption, height }: DropDownProps) => {
       >
         {options.map((option, index) => (
           <div
-            className="drop-down__options__option"
+            className="drop-down__options-option"
             onClick={() => handlerSetOptions(option)}
             key={index}
           >
