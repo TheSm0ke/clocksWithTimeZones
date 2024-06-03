@@ -1,0 +1,16 @@
+.drop-down {
+  border: 1px solid black;
+  border-radius: 4px;
+  margin: 4px;
+  cursor: pointer;
+  &__options{
+    border: 0.5px solid black;
+    border-radius: 4px;
+    margin: 4px;
+    overflow-y: auto;
+    cursor: pointer;
+    &__option:hover{
+      background-color: rgba(21, 96, 167, 0.425);
+    }
+  }
+}
