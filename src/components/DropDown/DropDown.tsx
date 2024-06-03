@@ -12,7 +12,7 @@ interface DropDownProps {
   height?: number;
 }
 
-const DropDown = ({ options, changeOption, height }: DropDownProps) => {
+const DropDown = ({ options, changeOption, height = 150 }: DropDownProps) => {
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(options[0]);
 
@@ -27,15 +27,15 @@ const DropDown = ({ options, changeOption, height }: DropDownProps) => {
   };
 
   return (
-    <>
-      <div className="drop-down" onClick={handlerShowOrCloseOptions}>
+    <div className="drop-down">
+      <div className="drop-down__label" onClick={handlerShowOrCloseOptions}>
         <span>{selectedValue.name}</span>
       </div>
       <div
         className="drop-down__options"
         style={{
           display: optionsIsOpen ? "block" : "none",
-          maxHeight: `${height}px`,
+          height: `${height}px`,
         }}
       >
         {options.map((option, index) => (
@@ -48,7 +48,7 @@ const DropDown = ({ options, changeOption, height }: DropDownProps) => {
           </div>
         ))}
       </div>
-    </>
+    </div>
   );
 };
 
