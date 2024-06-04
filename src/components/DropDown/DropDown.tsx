@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ArrowDropDown from "../../assets/arrow-drop-down.svg";
 import "./DropDown.scss";
 
 export interface Option {
@@ -36,10 +37,25 @@ const DropDown = ({
     changeOption(option);
   };
 
+  const addDotToLargeWord = (word: string) => {
+    if (word.length > 15) {
+      return `${word.slice(0, 15)}...`;
+    }
+    return word;
+  };
+
   return (
     <div className="drop-down">
       <div className="drop-down__label" onClick={handlerShowOrCloseOptions}>
-        <span>{selectedValue.name}</span>
+        <span>{addDotToLargeWord(selectedValue.name)}</span>
+        <img
+          className="drop-down__label-img"
+          style={{
+            rotate: optionsIsOpen ? "180deg" : "0deg",
+          }}
+          src={ArrowDropDown}
+          alt="arrow-drop-down"
+        />
       </div>
       <div
         className="drop-down__options"

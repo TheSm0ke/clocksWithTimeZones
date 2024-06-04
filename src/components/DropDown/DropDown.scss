@@ -3,27 +3,33 @@
   z-index: 1;
 
   &__label {
+    display: flex;
+    justify-content: space-between;
     border: 1px solid black;
     border-radius: 4px;
-    margin: 4px;
+    padding: 4px;
     cursor: pointer;
     line-height: 24px;
+    &-img {
+      height: 30px;
+      transition: rotate 0.5s;
+    }
   }
-
   &__options {
-    top: 25px;
+    top: calc(100% + 4px);
     width: auto;
     position: absolute;
     border: 1px solid black;
     border-radius: 4px;
-    margin: 4px;
-    width: calc(100% - 10px);;
+    padding: 4px;
+    width: calc(100% - 10px);
     background-color: #fff;
     z-index: 0;
     overflow-y: auto;
     cursor: pointer;
     &-option:hover {
-      background-color: rgba(21, 96, 167, 0.425);
+      background-color: rgb(235 235 235);
+      border-radius: 4px;
     }
   }
 }
