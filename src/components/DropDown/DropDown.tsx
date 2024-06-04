@@ -46,8 +46,14 @@ const DropDown = ({
 
   return (
     <div className="drop-down">
-      <div className="drop-down__label" onClick={handlerShowOrCloseOptions}>
-        <span>{addDotToLargeWord(selectedValue.name)}</span>
+      <div
+        className="drop-down__label"
+        style={{ backgroundColor: optionsIsOpen ? "#ebebeb" : "#fff" }}
+        onClick={handlerShowOrCloseOptions}
+      >
+        <span className="drop-down__label-selected">
+          {addDotToLargeWord(selectedValue.name)}
+        </span>
         <img
           className="drop-down__label-img"
           style={{

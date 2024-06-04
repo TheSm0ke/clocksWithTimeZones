@@ -5,11 +5,16 @@
   &__label {
     display: flex;
     justify-content: space-between;
-    border: 1px solid black;
+    border: 1px solid #ebebeb;
     border-radius: 4px;
     padding: 4px;
     cursor: pointer;
     line-height: 24px;
+
+    &-selected {
+      padding-left: 4px;
+    }
+
     &-img {
       height: 30px;
       transition: rotate 0.5s;
@@ -19,17 +24,26 @@
     top: calc(100% + 4px);
     width: auto;
     position: absolute;
-    border: 1px solid black;
+    border: 1px solid #ebebeb;
     border-radius: 4px;
-    padding: 4px;
-    width: calc(100% - 10px);
+    width: calc(100% - 3px);
     background-color: #fff;
     z-index: 0;
     overflow-y: auto;
+    text-align: start;
     cursor: pointer;
+    &-option {
+      line-height: 2rem;
+      display: flex;
+      padding-left: 4px;
+      border-bottom: 1px solid #ebebeb;
+    }
     &-option:hover {
-      background-color: rgb(235 235 235);
-      border-radius: 4px;
+      background-color: rgb(66 139 202);
+      color: #fff;
+    }
+    &-option:last-child {
+      border-bottom: none;
     }
   }
 }
