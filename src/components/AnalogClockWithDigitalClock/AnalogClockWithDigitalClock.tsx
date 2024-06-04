@@ -36,15 +36,8 @@ const AnalogClockWithDigitalClock = () => {
   }, [timeZones]);
 
   useEffect(() => {
-    const date = new Date();
     if (options.length === 1) return;
-    setCurrentOption(
-      options.find(
-        (option) =>
-          Number.parseInt(String(option.value)) ===
-          -date.getTimezoneOffset() / 60
-      )
-    );
+    setCurrentOption(options[0]);
   }, [options]);
 
   useEffect(() => {
@@ -88,7 +81,7 @@ const AnalogClockWithDigitalClock = () => {
           {numberWithZero(value.getSeconds())}
         </p>
         <DropDown
-          height={100}
+          height={130}
           options={options}
           defaultValue={currentOption}
           changeOption={handleChangeCurrentOption}
