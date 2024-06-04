@@ -3,6 +3,7 @@ import Clock from "react-clock";
 import DropDown, { Option } from "../DropDown/DropDown";
 import { useAppSelector } from "../../hook";
 import { TimeZone } from "../../hooks/timeZones";
+import Loader from "../Loader/Loader";
 import "./AnalogClockWithDigitalClock.css";
 
 const AnalogClockWithDigitalClock = () => {
@@ -72,25 +73,28 @@ const AnalogClockWithDigitalClock = () => {
   }
 
   return (
-    <div style={{ maxWidth: "200px", maxHeight: "500px" }}>
-      <Clock
-        size={200}
-        minuteHandLength={80}
-        hourHandLength={40}
-        renderNumbers={true}
-        value={value}
-      />
-      <p>
-        {numberWithZero(value.getHours())}:{numberWithZero(value.getMinutes())}:
-        {numberWithZero(value.getSeconds())}
-      </p>
-      <DropDown
-        height={100}
-        options={options}
-        defaultValue={currentOption}
-        changeOption={handleChangeCurrentOption}
-      />
-    </div>
+    <Loader isLoading={timeZones.isLoading}>
+      <div style={{ maxWidth: "200px", maxHeight: "500px" }}>
+        <Clock
+          size={200}
+          minuteHandLength={80}
+          hourHandLength={40}
+          renderNumbers={true}
+          value={value}
+        />
+        <p>
+          {numberWithZero(value.getHours())}:
+          {numberWithZero(value.getMinutes())}:
+          {numberWithZero(value.getSeconds())}
+        </p>
+        <DropDown
+          height={100}
+          options={options}
+          defaultValue={currentOption}
+          changeOption={handleChangeCurrentOption}
+        />
+      </div>
+    </Loader>
   );
 };
 

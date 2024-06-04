@@ -7,6 +7,7 @@ export interface TimeZone {
 
 export interface TimeZones {
   timeZones: TimeZone[];
+  isLoading: boolean;
 }
 
 export const getTimeZonesFromServer = createAsyncThunk("", async () => {
@@ -18,7 +19,7 @@ export const getTimeZonesFromServer = createAsyncThunk("", async () => {
   return response;
 });
 
-const initialState: TimeZones = { timeZones: [] };
+const initialState: TimeZones = { timeZones: [], isLoading: true };
 
 const timeZones = createSlice({
   name: "timeZones",
@@ -34,9 +35,11 @@ const timeZones = createSlice({
     builder.addCase(
       getTimeZonesFromServer.fulfilled,
       (state, action: PayloadAction<TimeZone[]>) => {
+        state.isLoading = true;
         state.timeZones = action.payload.map((el) => {
           return el;
         });
+        state.isLoading = false;
       }
     );
   },

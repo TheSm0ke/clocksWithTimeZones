@@ -1,0 +1,25 @@
+@-webkit-keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader {
+  height: 200px;
+  width: 200px;
+  &__image {
+    animation: rotating 2s linear infinite;
+  }
+}

@@ -1,5 +1,5 @@
-import { useAppDispatch, useAppSelector } from "../hook";
-import { TimeZones, getTimeZonesFromServer } from "../hooks/timeZones";
+import { useAppDispatch } from "../hook";
+import { getTimeZonesFromServer } from "../hooks/timeZones";
 import AnalogClockWithDigitalClock from "./AnalogClockWithDigitalClock/AnalogClockWithDigitalClock";
 import "./App.css";
 
