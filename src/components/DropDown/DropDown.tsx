@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./DropDown.scss";
 
 export interface Option {
@@ -21,6 +21,10 @@ const DropDown = ({
 }: DropDownProps) => {
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
   const [selectedValue, setSelectedValue] = useState(defaultValue);
+
+  useEffect(() => {
+    setSelectedValue(defaultValue);
+  }, [defaultValue]);
 
   const handlerShowOrCloseOptions = () => {
     setOptionsIsOpen((prev) => !prev);

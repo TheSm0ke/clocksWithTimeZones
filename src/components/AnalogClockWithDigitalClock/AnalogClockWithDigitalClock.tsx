@@ -1,59 +1,50 @@
 import { useEffect, useState } from "react";
 import Clock from "react-clock";
 import DropDown, { Option } from "../DropDown/DropDown";
+import { useAppSelector } from "../../hook";
+import { TimeZone } from "../../hooks/timeZones";
 import "./AnalogClockWithDigitalClock.css";
 
 const AnalogClockWithDigitalClock = () => {
-  const options = [
-    {
-      value: "2",
-      name: "Калиниград",
-    },
-    {
-      value: "3",
-      name: "Москва",
-    },
-    {
-      value: "4",
-      name: "Самара",
-    },
-    {
-      value: "5",
-      name: "Екатеринбург",
-    },
-    {
-      value: "6",
-      name: "Омск",
-    },
-    {
-      value: "7",
-      name: "Красноярск",
-    },
-    {
-      value: "8",
-      name: "Иркутск",
-    },
-    {
-      value: "9",
-      name: "Якутск",
-    },
-  ];
-
+  const timeZones = useAppSelector((state) => state.timeZones);
   const date = new Date();
   const timeWithoutTimeZone = date.getTimezoneOffset() * 60000;
   const hourInMilliSeconds = 3600000;
 
-  const [currentOption, setCurrentOption] = useState<Option>(
-    options.find(
-      (option) =>
-        Number.parseInt(option.value) === -date.getTimezoneOffset() / 60
-    ) ?? options[0]
+  const [options, setOptions] = useState<Option[]>(
+    timeZones.timeZones.length > 0
+      ? timeZones.timeZones.map((zone: TimeZone) => {
+          return { name: zone.name, value: String(zone.timezone) };
+        })
+      : [{ name: "test", value: "0" }]
   );
+  const [currentOption, setCurrentOption] = useState<Option | undefined>({
+    value: "0",
+    name: "test",
+  });
   const [value, setValue] = useState(new Date());
-  console.log(currentOption);
 
-  const handleChangeCurrentOption = (option: Option) =>
-    setCurrentOption(option);
+  useEffect(() => {
+    const options =
+      timeZones.timeZones.length > 0
+        ? timeZones.timeZones.map((zone: TimeZone) => {
+            return { name: zone.name, value: String(zone.timezone) };
+          })
+        : [{ name: "test", value: "0" }];
+    setOptions(options);
+  }, [timeZones]);
+
+  useEffect(() => {
+    const date = new Date();
+    if (options.length === 1) return;
+    setCurrentOption(
+      options.find(
+        (option) =>
+          Number.parseInt(String(option.value)) ===
+          -date.getTimezoneOffset() / 60
+      )
+    );
+  }, [options]);
 
   useEffect(() => {
     const interval = setInterval(
@@ -72,6 +63,9 @@ const AnalogClockWithDigitalClock = () => {
       clearInterval(interval);
     };
   }, [currentOption, timeWithoutTimeZone]);
+
+  const handleChangeCurrentOption = (option: Option) =>
+    setCurrentOption(option);
 
   function numberWithZero(num: number) {
     return num < 10 ? "0" + num : num;
