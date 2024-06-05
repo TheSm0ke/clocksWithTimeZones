@@ -1,6 +1,6 @@
 import { useAppDispatch } from "../hook";
 import { getTimeZonesFromServer } from "../hooks/timeZones";
-import AnalogClockWithDigitalClock from "./AnalogClockWithDigitalClock/AnalogClockWithDigitalClock";
+import AnalogClockWithDigitalClock from "./ClocksWithDropDown";
 import "./App.css";
 
 const App = () => {

@@ -1,5 +1,5 @@
 import LoaderSVG from "../../assets/loader.svg";
-import "./Loader.scss";
+import "./index.scss";
 
 interface LoaderProps {
   isLoading: boolean;

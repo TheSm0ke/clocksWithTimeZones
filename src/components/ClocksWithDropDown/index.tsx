@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import Clock from "react-clock";
-import DropDown, { Option } from "../DropDown/DropDown";
+import DropDown, { Option } from "../DropDown";
 import { useAppSelector } from "../../hook";
 import { TimeZone } from "../../hooks/timeZones";
-import Loader from "../Loader/Loader";
-import "./AnalogClockWithDigitalClock.css";
+import Loader from "../Loader";
+import "./index.css";
 
 const AnalogClockWithDigitalClock = () => {
   const timeZones = useAppSelector((state) => state.timeZones);
@@ -50,7 +50,7 @@ const AnalogClockWithDigitalClock = () => {
               +Number(currentOption?.value) * hourInMilliSeconds
           );
         }),
-      1000
+      100
     );
 
     return () => {

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import ArrowDropDown from "../../assets/arrow-drop-down.svg";
-import "./DropDown.scss";
+import "./index.scss";
 
 export interface Option {
   value: string | number;
