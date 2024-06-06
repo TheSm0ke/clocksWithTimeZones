@@ -17,7 +17,7 @@ const AnalogClockWithDigitalClock = () => {
       ? timeZones.timeZones.map((zone: TimeZone) => {
           return { name: zone.name, value: String(zone.timezone) };
         })
-      : [{ name: "test", value: "0" }]
+      : [{ name: "test", value: "0" }],
   );
   const [currentOption, setCurrentOption] = useState<Option | undefined>({
     value: "0",
@@ -47,10 +47,10 @@ const AnalogClockWithDigitalClock = () => {
           return new Date(
             new Date().getTime() +
               timeWithoutTimeZone +
-              +Number(currentOption?.value) * hourInMilliSeconds
+              +Number(currentOption?.value) * hourInMilliSeconds,
           );
         }),
-      100
+      100,
     );
 
     return () => {

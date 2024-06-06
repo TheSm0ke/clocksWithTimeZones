@@ -22,6 +22,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build:prod": "webpack --mode production",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -44,7 +45,20 @@
     ]
   },
   "devDependencies": {
+    "@svgr/cli": "^8.1.0",
+    "@svgr/webpack": "^8.1.0",
+    "@typescript-eslint/types": "^7.12.0",
+    "editor": "^1.0.0",
+    "eslint": "^9.4.0",
+    "eslint-config-react-app": "^7.0.1",
+    "eslint-plugin-unicorn": "^53.0.0",
+    "html-webpack-plugin": "^5.6.0",
+    "mini-css-extract-plugin": "^2.9.0",
     "moment-timezone": "^0.5.45",
-    "sass": "^1.77.4"
+    "prettier": "^3.3.1",
+    "sass": "^1.77.4",
+    "svg-chunk-webpack-plugin": "^6.0.1",
+    "ts-loader": "^9.5.1",
+    "webpack-cli": "^5.1.4"
   }
 }

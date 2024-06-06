@@ -11,8 +11,16 @@ export interface TimeZones {
 }
 
 export const getTimeZonesFromServer = createAsyncThunk("", async () => {
-  const response: any = await fetch("timezones.json")
-    .then((rep) => rep.json())
+  const response: any = await fetch("http://127.0.0.1:3000/timezones.json", {
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+  })
+    .then((rep) => {
+      console.log(rep);
+      return rep.json();
+    })
     .then((data) => {
       return data;
     });
@@ -40,7 +48,7 @@ const timeZones = createSlice({
           return el;
         });
         state.isLoading = false;
-      }
+      },
     );
   },
 });

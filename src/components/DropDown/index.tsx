@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import ArrowDropDown from "../../assets/arrow-drop-down.svg";
+import ArrowDropDown from "../../assets/arrow-drop-down";
 import "./index.scss";
 
 export interface Option {
@@ -54,13 +54,11 @@ const DropDown = ({
         <span className="drop-down__label-selected">
           {addDotToLargeWord(selectedValue.name)}
         </span>
-        <img
+        <ArrowDropDown
           className="drop-down__label-img"
           style={{
             rotate: optionsIsOpen ? "180deg" : "0deg",
           }}
-          src={ArrowDropDown}
-          alt="arrow-drop-down"
         />
       </div>
       <div

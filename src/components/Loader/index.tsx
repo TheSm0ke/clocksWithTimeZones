@@ -1,4 +1,4 @@
-import LoaderSVG from "../../assets/loader.svg";
+import LoaderSVG from "../../assets/loader";
 import "./index.scss";
 
 interface LoaderProps {
@@ -11,7 +11,7 @@ const Loader = ({ isLoading, children }: LoaderProps) => {
     <>
       {isLoading && (
         <div className="loader">
-          <img src={LoaderSVG} className="loader__image" alt="logo" />
+          <LoaderSVG className={"loader__image"} />
         </div>
       )}
       {!isLoading && children}
