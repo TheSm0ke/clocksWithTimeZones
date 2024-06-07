@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const HtmlWebpackPlugin  = require('html-webpack-plugin');
-//const SvgChunkWebpackPlugin  = require('svg-chunk-webpack-plugin');
 
 module.exports = {
   context: __dirname,
@@ -67,7 +66,6 @@ module.exports = {
       favicon: path.resolve(__dirname,  './public/favicon.ico'),
     }),
     new MiniCssExtractPlugin({filename: '[name].css'}),
-    //new SvgChunkWebpackPlugin({filename: '[name].svg'})
   ],
   devServer: {
     port: 3000,

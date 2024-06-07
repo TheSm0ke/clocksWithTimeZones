@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { toast } from "react-toastify";
+import { ToastOptions, toast } from "react-toastify";
 
 export interface TimeZone {
   timezone: number | string;
@@ -11,24 +11,25 @@ export interface TimeZones {
   isLoading: boolean;
 }
 
-const succes = () => toast("Timezones loaded", { containerId: "A", type: "success" });
+const notify = (Message: string, type: ToastOptions<unknown>) =>
+  toast(Message, { containerId: "A", ...type });
 
 export const getTimeZonesFromServer = createAsyncThunk("", async () => {
-  const response: any = await fetch("http://127.0.0.1:3000/timezones.json", {
+  const response: any = await fetch("http://127.0.0.1:3000/timezones/asd", {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
     },
   })
-    .then((rep) => {
-      console.log(rep);
-      return rep.json();
-    })
+    .then((rep) => rep.json())
     .then((data) => {
-      succes();
+      notify("Часовые пояса загружены успешно", { type: "success" });
       return data;
     })
-    .catch((ex) => {});
+    .catch((ex) => {
+      console.log(ex);
+      notify("Ошибка загрузки часовых поясов", { type: "error" });
+    });
   return response;
 });
 
@@ -49,6 +50,9 @@ const timeZones = createSlice({
       getTimeZonesFromServer.fulfilled,
       (state, action: PayloadAction<TimeZone[]>) => {
         state.isLoading = true;
+        if (action.payload === undefined) {
+          return;
+        }
         state.timeZones = action.payload.map((el) => {
           return el;
         });
