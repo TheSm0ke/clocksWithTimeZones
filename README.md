@@ -1,46 +1,69 @@
-# Getting Started with Create React App
+# Clock With Timezones
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Веб-приложение для отрисовки аналоговых часов и цифровых с возможностью просматривать другие часовые пояса используя выпадающий список.
 
-## Available Scripts
+Краткое решение задачи:
+Я реализовал компонет с логикой смены времени через uts-0 со смещением на выбранный часов пояс в интервале когда должно обновляться время на часах. Если же часовых поясов нет, то показывается текущий часовой пояс. Получение часовых поясов происходит через fetch и записью в state Redux.
 
-In the project directory, you can run:
+# Stack
 
-### `yarn start`
+- [React](https://ru.legacy.reactjs.org)
+- [TypeScript](https://www.typescriptlang.org)
+- [Redux](https://redux.js.org)
+- [Sass](https://sass-lang.com)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+# Assets
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Папка содержащая в себе svg элементы, корвертированые в tsx для обработки webpack'ом.
 
-### `yarn test`
+# Components
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- ClocksWithDropDown - Компонент необходимый для отрисовки цифровых и аналоговых компонентов, так же есть компонент DropDown. Использует Redux для получения часовых поясов, которые затем помещаются в выпадающий список. Показывает всегда локальное время, если есть список часовых поясов пересчитывает время на первый в списке пояс. Пересчет времени происходит путем вычисления разници с UTC-0.
+- DropDown - Выпадающий список.
+- Loader - Компонент загрузки, получает булевую загрузку, а так же children который будет отрисовываться в случие конца загрузки.
+- App - Главный компонент, который дает команду на запрос часовых поясов, а так же содержит в себе контейнер уведомлений.
 
-### `yarn build`
+# Store
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+- Store - Компонент для иницилизации Redux.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+# Styles
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- NotifyStyles - Стили для отрисовки уведомлений.
 
-### `yarn eject`
+# TimeZonesStore
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- TimeZones - Redux состояние содержащие в себе часовые пояса, и функцию для их получения. Содержит функцию для вызова уведомлений.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+# Hook.ts
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Файл для переопределния функций вызова Redux для TypeScript
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## Configs
 
-## Learn More
+- .editorconfig
+- .prettierignore
+- .prettierrc.js
+- eslint.config.js
+- tsconfig.json
+- webpack.config.js
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Features
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- [React-Clock](https://www.npmjs.com/package/react-clock) - использовал для отрисовывания аналоговых часов.
+- [UnicornEslint](https://www.npmjs.com/package/react-clock) - плагин для eslint
+- [React-toastify](https://www.npmjs.com/package/react-toastify) - использовал для красивых уведомлений
+
+## Installation
+
+```sh
+cd cloksWithTimeZones
+
+npm i
+or
+yarn
+
+npm run start
+or
+yarn start
+```

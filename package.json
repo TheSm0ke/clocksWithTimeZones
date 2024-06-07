@@ -58,7 +58,6 @@
     "eslint-plugin-unicorn": "^53.0.0",
     "html-webpack-plugin": "^5.6.0",
     "mini-css-extract-plugin": "^2.9.0",
-    "moment-timezone": "^0.5.45",
     "prettier": "^3.3.1",
     "sass": "^1.77.4",
     "svg-chunk-webpack-plugin": "^6.0.1",
