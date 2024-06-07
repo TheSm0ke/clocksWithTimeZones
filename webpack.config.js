@@ -38,14 +38,14 @@ module.exports = {
         ],
       },
       {
-        test: /\.css$/,
+        test: /\.css$/i,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
         test: /\.scss$/,
         exclude: /node_modules/,
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.svg$/i,

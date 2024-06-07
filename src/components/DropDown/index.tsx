@@ -4,7 +4,7 @@ import "./index.scss";
 
 export interface Option {
   value: string | number;
-  name: string;
+  label: string;
 }
 
 interface DropDownProps {
@@ -21,11 +21,11 @@ const DropDown = ({
   defaultValue = options[0],
 }: DropDownProps) => {
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState(defaultValue);
+  const [selectedValue, setSelectedValue] = useState<Option>(defaultValue ?? options[0]);
 
   useEffect(() => {
-    setSelectedValue(defaultValue);
-  }, [defaultValue]);
+    setSelectedValue(options[0]);
+  }, [options]);
 
   const handlerShowOrCloseOptions = () => {
     setOptionsIsOpen((prev) => !prev);
@@ -49,10 +49,9 @@ const DropDown = ({
       <div
         className="drop-down__label"
         style={{ backgroundColor: optionsIsOpen ? "#ebebeb" : "#fff" }}
-        onClick={handlerShowOrCloseOptions}
-      >
+        onClick={handlerShowOrCloseOptions}>
         <span className="drop-down__label-selected">
-          {addDotToLargeWord(selectedValue.name)}
+          {addDotToLargeWord(selectedValue.label)}
         </span>
         <ArrowDropDown
           className="drop-down__label-img"
@@ -66,15 +65,13 @@ const DropDown = ({
         style={{
           display: optionsIsOpen ? "block" : "none",
           height: `${height}px`,
-        }}
-      >
+        }}>
         {options.map((option, index) => (
           <div
             className="drop-down__options-option"
             onClick={() => handlerSetOptions(option)}
-            key={index}
-          >
-            {option.name}
+            key={index}>
+            {option.label}
           </div>
         ))}
       </div>

@@ -15,35 +15,30 @@ const AnalogClockWithDigitalClock = () => {
   const [options, setOptions] = useState<Option[]>(
     timeZones.timeZones.length > 0
       ? timeZones.timeZones.map((zone: TimeZone) => {
-          return { name: zone.name, value: String(zone.timezone) };
+          return { label: zone.name, value: String(zone.timezone) };
         })
-      : [{ name: "test", value: "0" }],
+      : [{ label: "test", value: "0" }],
   );
-  const [currentOption, setCurrentOption] = useState<Option | undefined>({
-    value: "0",
-    name: "test",
-  });
+  const [currentOption, setCurrentOption] = useState<Option>();
   const [value, setValue] = useState(new Date());
 
   useEffect(() => {
     const options =
       timeZones.timeZones.length > 0
         ? timeZones.timeZones.map((zone: TimeZone) => {
-            return { name: zone.name, value: String(zone.timezone) };
+            return { label: zone.name, value: String(zone.timezone) };
           })
-        : [{ name: "test", value: "0" }];
+        : [{ label: "test", value: "0" }];
     setOptions(options);
-  }, [timeZones]);
-
-  useEffect(() => {
-    if (options.length === 1) return;
     setCurrentOption(options[0]);
-  }, [options]);
+  }, [timeZones]);
 
   useEffect(() => {
     const interval = setInterval(
       () =>
         setValue(() => {
+          if (isNaN(Number(currentOption?.value))) return new Date();
+
           return new Date(
             new Date().getTime() +
               timeWithoutTimeZone +
@@ -58,8 +53,7 @@ const AnalogClockWithDigitalClock = () => {
     };
   }, [currentOption, timeWithoutTimeZone]);
 
-  const handleChangeCurrentOption = (option: Option) =>
-    setCurrentOption(option);
+  const handleChangeCurrentOption = (option: Option) => setCurrentOption(option);
 
   function numberWithZero(num: number) {
     return num < 10 ? "0" + num : num;
@@ -76,14 +70,12 @@ const AnalogClockWithDigitalClock = () => {
           value={value}
         />
         <p>
-          {numberWithZero(value.getHours())}:
-          {numberWithZero(value.getMinutes())}:
+          {numberWithZero(value.getHours())}:{numberWithZero(value.getMinutes())}:
           {numberWithZero(value.getSeconds())}
         </p>
         <DropDown
           height={130}
           options={options}
-          defaultValue={currentOption}
           changeOption={handleChangeCurrentOption}
         />
       </div>
