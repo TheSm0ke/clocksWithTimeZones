@@ -15,7 +15,8 @@ const notify = (Message: string, type: ToastOptions<unknown>) =>
   toast(Message, { containerId: "A", ...type });
 
 export const getTimeZonesFromServer = createAsyncThunk("", async () => {
-  const response: any = await fetch("http://127.0.0.1:3000/timezones/asd", {
+  notify("Загруза часовых поясов", { type: "info" });
+  const response: any = await fetch("http://127.0.0.1:3000/timezones.json", {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
@@ -51,6 +52,7 @@ const timeZones = createSlice({
       (state, action: PayloadAction<TimeZone[]>) => {
         state.isLoading = true;
         if (action.payload === undefined) {
+          state.isLoading = false;
           return;
         }
         state.timeZones = action.payload.map((el) => {

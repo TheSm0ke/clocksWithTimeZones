@@ -12,23 +12,17 @@ const AnalogClockWithDigitalClock = () => {
   const timeWithoutTimeZone = date.getTimezoneOffset() * 60000;
   const hourInMilliSeconds = 3600000;
 
-  const [options, setOptions] = useState<Option[]>(
-    timeZones.timeZones.length > 0
-      ? timeZones.timeZones.map((zone: TimeZone) => {
-          return { label: zone.name, value: String(zone.timezone) };
-        })
-      : [{ label: "test", value: "0" }],
-  );
+  const [options, setOptions] = useState<Option[]>([
+    { label: "Текущий", value: String(-date.getTimezoneOffset() / 60) },
+  ]);
   const [currentOption, setCurrentOption] = useState<Option>();
   const [value, setValue] = useState(new Date());
 
   useEffect(() => {
-    const options =
-      timeZones.timeZones.length > 0
-        ? timeZones.timeZones.map((zone: TimeZone) => {
-            return { label: zone.name, value: String(zone.timezone) };
-          })
-        : [{ label: "test", value: "0" }];
+    if (timeZones.timeZones.length === 0) return;
+    const options = timeZones.timeZones.map((zone: TimeZone) => {
+      return { label: zone.name, value: String(zone.timezone) };
+    });
     setOptions(options);
     setCurrentOption(options[0]);
   }, [timeZones]);
@@ -45,7 +39,7 @@ const AnalogClockWithDigitalClock = () => {
               +Number(currentOption?.value) * hourInMilliSeconds,
           );
         }),
-      100,
+      1000,
     );
 
     return () => {

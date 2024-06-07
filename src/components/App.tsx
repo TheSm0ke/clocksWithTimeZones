@@ -9,11 +9,17 @@ const App = () => {
   const dispatch = useAppDispatch();
   dispatch(getTimeZonesFromServer());
 
+  const Clocks = (count: number) => {
+    let clocks: JSX.Element[] = [];
+    for (let i = 0; i < count; i++) {
+      clocks.push(<AnalogClockWithDigitalClock key={i} />);
+    }
+    return clocks;
+  };
+
   return (
     <>
-      <div className="App">
-        <AnalogClockWithDigitalClock />
-      </div>
+      <div className="App">{Clocks(2)}</div>
       <ToastContainer
         autoClose={2000}
         hideProgressBar={false}

@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "clock-with-timzones",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -35,6 +35,9 @@
   },
   "browserslist": {
     "production": [
+      "Chrome > 57",
+      "Firefox > 52",
+      "Opera > 44",
       ">0.2%",
       "not dead",
       "not op_mini all"

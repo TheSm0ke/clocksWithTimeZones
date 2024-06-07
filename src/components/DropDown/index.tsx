@@ -21,9 +21,12 @@ const DropDown = ({
   defaultValue = options[0],
 }: DropDownProps) => {
   const [optionsIsOpen, setOptionsIsOpen] = useState(false);
-  const [selectedValue, setSelectedValue] = useState<Option>(defaultValue ?? options[0]);
+  const [selectedValue, setSelectedValue] = useState<Option>(
+    defaultValue ?? options.length > 0 ? options[0] : { label: "", value: "" },
+  );
 
   useEffect(() => {
+    if (options.length === 0) return;
     setSelectedValue(options[0]);
   }, [options]);
 
@@ -51,7 +54,7 @@ const DropDown = ({
         style={{ backgroundColor: optionsIsOpen ? "#ebebeb" : "#fff" }}
         onClick={handlerShowOrCloseOptions}>
         <span className="drop-down__label-selected">
-          {addDotToLargeWord(selectedValue.label)}
+          {addDotToLargeWord(selectedValue.label ?? "")}
         </span>
         <ArrowDropDown
           className="drop-down__label-img"
@@ -66,14 +69,15 @@ const DropDown = ({
           display: optionsIsOpen ? "block" : "none",
           height: `${height}px`,
         }}>
-        {options.map((option, index) => (
-          <div
-            className="drop-down__options-option"
-            onClick={() => handlerSetOptions(option)}
-            key={index}>
-            {option.label}
-          </div>
-        ))}
+        {options.length > 0 &&
+          options.map((option, index) => (
+            <div
+              className="drop-down__options-option"
+              onClick={() => handlerSetOptions(option)}
+              key={index}>
+              {option.label}
+            </div>
+          ))}
       </div>
     </div>
   );
