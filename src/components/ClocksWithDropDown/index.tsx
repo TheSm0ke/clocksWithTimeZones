@@ -16,7 +16,7 @@ const AnalogClockWithDigitalClock = () => {
     { label: "Текущий", value: String(-date.getTimezoneOffset() / 60) },
   ]);
   const [currentOption, setCurrentOption] = useState<Option>();
-  const [value, setValue] = useState(new Date());
+  const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
     if (timeZones.timeZones.length === 0) return;
@@ -30,7 +30,7 @@ const AnalogClockWithDigitalClock = () => {
   useEffect(() => {
     const interval = setInterval(
       () =>
-        setValue(() => {
+        setCurrentTime(() => {
           if (isNaN(Number(currentOption?.value))) return new Date();
 
           return new Date(
@@ -61,11 +61,12 @@ const AnalogClockWithDigitalClock = () => {
           minuteHandLength={80}
           hourHandLength={40}
           renderNumbers={true}
-          value={value}
+          value={currentTime}
         />
         <p>
-          {numberWithZero(value.getHours())}:{numberWithZero(value.getMinutes())}:
-          {numberWithZero(value.getSeconds())}
+          {numberWithZero(currentTime.getHours())}:
+          {numberWithZero(currentTime.getMinutes())}:
+          {numberWithZero(currentTime.getSeconds())}
         </p>
         <DropDown
           height={130}
