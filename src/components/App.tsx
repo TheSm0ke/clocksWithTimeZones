@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../hook";
-import { getTimeZonesFromServer } from "../hooks/timeZones";
+import { getTimeZonesFromServer } from "../timeZonesStore/timeZones";
 import AnalogClockWithDigitalClock from "./ClocksWithDropDown";
 import { ToastContainer } from "react-toastify";
 import "./App.css";

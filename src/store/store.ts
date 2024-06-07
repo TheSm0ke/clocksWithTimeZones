@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import timeZonesReducer from '../hooks/timeZones'
+import timeZonesReducer from '../timeZonesStore/timeZones'
 
 export const store = configureStore({
   reducer: {

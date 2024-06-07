@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Clock from "react-clock";
 import DropDown, { Option } from "../DropDown";
 import { useAppSelector } from "../../hook";
-import { TimeZone } from "../../hooks/timeZones";
+import { TimeZone } from "../../timeZonesStore/timeZones";
 import Loader from "../Loader";
 import "./index.css";
 
