@@ -57,7 +57,7 @@
 ## Installation
 
 ```sh
-cd cloksWithTimeZones
+cd clocksWithTimeZones
 
 npm i
 or
